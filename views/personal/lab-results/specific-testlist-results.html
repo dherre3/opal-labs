@@ -1,0 +1,16 @@
+<ons-page ng-controller="TestListController">
+  <ons-toolbar style="height:88px">
+    <div class="left"><ons-back-button>Back</ons-back-button></div>
+    <div class="center">{{testResults.TestName}}<br>
+    <div style="width:100vw;margin-left:-27%">Test Results - {{testResults.TestName}} - Min:{{testResults.TestInformation.MinNorm}} - Max:{{testResults.TestInformation.MaxNorm}}<span style="text-align:right;float:right">({{testResults.TestInformation.UnitDescription}})</span></div>
+</div>
+  </ons-toolbar>
+     <ons-list>
+      <!--<ons-list-header>Test Results - {{testResults.TestName}} - Min:{{testResults.TestInformation.MinNorm}} - Max:{{testResults.TestInformation.MaxNorm}}<span style="text-align:right;float:right">({{testResults.TestInformation.UnitDescription}})</span></ons-list-header>-->
+      <ons-list-header style="margin-top:44px" ng-repeat-start="test in testResults.TestData" ng-show="showIfFullYear($index)"> {{test.TestDateFormat|date:'yyyy'}}</ons-list-header>
+      <ons-list-item ng-repeat-end>
+        {{test.TestDateFormat|date:"EEEE MMM d 'at' h:mm a"}}
+        <div class="right lucent">{{test.TestValue}} </div>
+      </ons-list-item >
+    </ons-list >
+</ons-page>
