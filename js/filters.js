@@ -54,7 +54,7 @@ var myApp=angular.module('myApp');
 			if(typeof dateApp!=='undefined'){
 				if(dateApp.getFullYear()==today.getFullYear())
 				{
-					return $filter('date')(dateApp,"EEEE MMM d 'at' h:mm a");
+					return $filter('date')(dateApp,"EEEE MMM d ");
 				}else{
 					return $filter('date')(dateApp,"EEEE MMM d yyyy");
 				}

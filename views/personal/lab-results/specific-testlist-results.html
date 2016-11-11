@@ -1,16 +1,47 @@
 <ons-page ng-controller="TestListController">
-  <ons-toolbar style="height:88px">
+  <ons-toolbar class="navigation-bar--noshadow">
     <div class="left"><ons-back-button>Back</ons-back-button></div>
-    <div class="center">{{testResults.TestName}}<br>
-    <div style="width:100vw;margin-left:-27%">Test Results - {{testResults.TestName}} - Min:{{testResults.TestInformation.MinNorm}} - Max:{{testResults.TestInformation.MaxNorm}}<span style="text-align:right;float:right">({{testResults.TestInformation.UnitDescription}})</span></div>
+    <div class="center">Results - {{testResults.TestName}} <br>
 </div>
   </ons-toolbar>
-     <ons-list>
+  <div class="tab-bar ons-tab-bar__footer ons-tabbar-inner tab-bar--top" style="font-weight:400;font-size: 17px;font-weight: 500;">
+           <!--<span style="text-align:left;float:left;padding:5px">Date</span><div style="text-align:right;float:right;width:40%"><div style="text-align:center">Test Value <span style="font-size:10px">({{testResults.TestInformation.UnitDescription}})</span><br>Min:{{testResults.TestInformation.MinNorm}} - Max:{{testResults.TestInformation.MaxNorm}}</div></div> -->
+           <ons-list-header style="line-height:14px;border-bottom:0px">Date <span style="text-align:right;float:right">Test Value <span style="font-size:10px">({{testResults.TestInformation.UnitDescription}})</span><br>Min:{{testResults.TestInformation.MinNorm}} - Max:{{testResults.TestInformation.MaxNorm}}</span></ons-list-header>
+  </div>
+   <div class="ons-tab-bar__content tab-bar__content tab-bar--material__content tab-bar--top__content">
+      <ons-page >
+        <ons-list>
       <!--<ons-list-header>Test Results - {{testResults.TestName}} - Min:{{testResults.TestInformation.MinNorm}} - Max:{{testResults.TestInformation.MaxNorm}}<span style="text-align:right;float:right">({{testResults.TestInformation.UnitDescription}})</span></ons-list-header>-->
+      <ons-list-header ng-repeat-start="test in testResults.TestData" ng-show="showIfFullYear($index)"> {{test.TestDateFormat|date:'yyyy'}}</ons-list-header>
+      <ons-list-item ng-repeat-end>
+        {{test.TestDateFormat|date:"EEEE MMM dd"}}
+        <div class="right lucent">{{test.TestValue}} </div>
+      </ons-list-item >
+    </ons-list >
+      </ons-page>
+   </div>
+   <!--<div class="tab-bar ons-tab-bar__footer ons-tabbar-inner tab-bar--top">
+     <label class="tab-bar__item ">
+    <input type="radio" name="tab-bar-material-a" checked="checked">
+    <div class="tab-bar__button " style="line-height:20px">
+       <span style="text-align:left;float:left;padding:5px">Date</span><div style="text-align:right;float:right;width:30%"><div style="text-align:center">Test Value <br>({{testResults.TestInformation.UnitDescription}})</div></div> 
+   </div>
+  </label>
+   </div>-->
+  <!--<ons-tabbar position="top">
+    <ons-tab label="By Date" icon="ion-calendar" active="true"></ons-tab>
+    <div class="ons-tab-bar__content tab-bar__content tab-bar--material__content tab-bar--top__content">
+      <ons-page></ons-page>
+    </div>
+
+ </ons-tabbar>-->
+       <!--<ons-list-header>Test Results - {{testResults.TestName}} - Min:{{testResults.TestInformation.MinNorm}} - Max:{{testResults.TestInformation.MaxNorm}}<span style="text-align:right;float:right">({{testResults.TestInformation.UnitDescription}})</span></ons-list-header>-->
+
+     <!--<ons-list>
       <ons-list-header style="margin-top:44px" ng-repeat-start="test in testResults.TestData" ng-show="showIfFullYear($index)"> {{test.TestDateFormat|date:'yyyy'}}</ons-list-header>
       <ons-list-item ng-repeat-end>
         {{test.TestDateFormat|date:"EEEE MMM d 'at' h:mm a"}}
         <div class="right lucent">{{test.TestValue}} </div>
       </ons-list-item >
-    </ons-list >
+    </ons-list >-->
 </ons-page>

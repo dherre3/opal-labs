@@ -14,8 +14,15 @@ angular.module('myApp').directive('hcChart', function () {
                         Highcharts.chart(element[0], scope.options);
                         scope.$watch('options',function()
                         {
-                            chart = new Highcharts.chart(element[0], scope.options);
-                            console.log(chart.series);
+                            
+                                chart = new Highcharts.chart(element[0], scope.options,function(chart)
+                                {
+                                    chart.series[0].data[scope.activeIndex].setState('hover');
+                                    //chart.series[0].data[1].setState('hover');
+                                    chart.tooltip.refresh(chart.series[0].points[scope.activeIndex]);
+                                });
+                            
+                            
 
                         });
                         ons.orientation.on('change',function()
@@ -38,12 +45,12 @@ angular.module('myApp').directive('hcChart', function () {
                             console.log(before,after);
                             if(chart)
                             {
-                                if(before!==after)
-                                {
-                                    chart.series[0].data[before].setState();
-                                    chart.tooltip.hide();
-                                }
-                                console.log('heelo');
+                                // if(before!==after)
+                                // {
+                                //     chart.series[0].data[before].setState();
+                                //     chart.tooltip.hide();
+                                // }
+                                // console.log('heelo');
                                 chart.series[0].data[after].setState('hover');
                                 //chart.series[0].data[1].setState('hover');
                                 chart.tooltip.refresh(chart.series[0].points[after]);

@@ -1,5 +1,6 @@
 angular.module('myApp').controller('LoginController',function($scope,$timeout, UserAuthorizationInfo, LabResults, RequestToServer, FirebaseService)
 {
+
     var email = 'hendren@cs.mcgill.ca';
     var password = '12345';
     var savedEmail = window.localStorage.getItem('email');
@@ -27,6 +28,7 @@ angular.module('myApp').controller('LoginController',function($scope,$timeout, U
                 UserAuthorizationInfo.setToken(token);
                  RequestToServer.sendRequestWithResponse('Refresh',{Fields:'LabTests',Timestamp:0}).then(function(data){
                     console.log(data);
+                    //window.localStorage.setItem('offline', JSON.stringify(data));
                     LabResults.setTestResults(data.Data.LabTests);
                     modal.hide();
                     navi.pushPage('views/personal/lab-results/lab-results.html');

@@ -1,20 +1,54 @@
 <ons-page ng-controller="TimelineTestComponentController">
-  <ons-toolbar>
+  <ons-toolbar >
     <div class="left"><ons-back-button>Back</ons-back-button></div>
     <div class="center">{{title}}</div>
   </ons-toolbar>
+  <!--<ons-toolbar-button ng-click="goPrevTestResult()" ng-disabled="activeTestIndex===0" ><i class="ion-chevron-left"></i></ons-toolbar-button><span ng-show="!isFullscreen">{{category}}</span><ons-toolbar-button  ng-disabled="activeTestIndex===testResultsByType.length-1" ng-click="goNextTestResult()" ng-show="!isFullscreen"><i class="ion-chevron-right"></i></ons-toolbar-button>-->
+   <!--<div class="tab-bar ons-tab-bar__footer ons-tabbar-inner tab-bar--top" style="border-bottom:1px solid #bbb">
+     <ons-row>
+  <ons-col width="40px"><ons-button ng-disabled="activeIndex==0" modifier="quiet"  ng-click="prevResult()"><i class="ion-chevron-left" style="font-size:30px"></i></ons-button></ons-col>
+  <ons-col align="center" style="text-align:center">{{title}}</ons-col>
+  <ons-col width="40px"><ons-button ng-disabled="activeIndex==historicViewTestResult.length-1" modifier="quiet" ng-click="nextResult()"><i class="ion-chevron-right" style="font-size:30px"></i></ons-button></ons-col>
+</ons-row>
+  </div>-->
+   <!--<div class="ons-tab-bar__content tab-bar__content tab-bar--material__content tab-bar--top__content">
+      <ons-page >
+       
    <ons-list class="contact-block" style="padding:5px">
         <ons-list-item modifier="material" >
               <div class="left"><ons-button ng-disabled="activeIndex==0" modifier="quiet"  ng-click="prevResult()"><i class="ion-chevron-left" style="font-size:30px"></i></ons-button></div>
               <div class="center" style="text-align:center">
-                 <span class="list__item__title">{{historicViewTestResult[activeIndex].TestDateFormat|date:"EEEE MMM d 'at' h:mm a"}}</span>
-                 <span class="list__item__subtitle"><span ng-show="activeIndex!==historicViewTestResult.length-1"> Result: </span><span ng-show="activeIndex==historicViewTestResult.length-1">Latest Result: </span>{{historicViewTestResult[activeIndex].TestValue}} {{testInformation.UnitDescription}}</span>
+                 <span class="list__item__title"><span ng-show="activeIndex!==historicViewTestResult.length-1"> Result: </span><span ng-show="activeIndex==historicViewTestResult.length-1">Latest Result: </span>{{historicViewTestResult[activeIndex].TestValue}}<span style="font-size:10px">( {{testInformation.UnitDescription}})</span></span>
+                 <span class="list__item__subtitle">{{historicViewTestResult[activeIndex].TestDateFormat|date:"EEEE MMM d 'at' h:mm a"}}</span>
               </div>
               <div class="right"><ons-button ng-disabled="activeIndex==historicViewTestResult.length-1" modifier="quiet" ng-click="nextResult()"><i class="ion-chevron-right" style="font-size:30px"></i></ons-button></div>
 
         </ons-list-item>
       </ons-list>
-    <!--<line-chart height="250px" data="data"></line-chart>-->
+  
+      </ons-page>
+   </div>-->
+    <ons-list class="contact-block" style="padding:5px">
+            <ons-list-item >
+              <!--<div class="left" style="width:20%"><ons-button ng-disabled="activeIndex==0" modifier="quiet"  ng-click="prevResult()"><i class="ion-chevron-left" style="font-size:20px"></i></ons-button></div>-->
+
+              <!--<div class="center">
+
+                 <span class="list__item__title"><ons-icon class="list__item__icon " icon="ion-ios-information-outline"></ons-icon>&nbsp;<span ng-show="activeIndex!==historicViewTestResult.length-1"> Result: </span><span ng-show="activeIndex==historicViewTestResult.length-1">Latest Result: </span> {{historicViewTestResult[historicViewTestResult.length-1].TestValue}} 
+                 <span style="font-size:10px">({{testInformation.UnitDescription}})</span></span>
+                 <span class="list__item__subtitle">{{historicViewTestResult[historicViewTestResult.length-1].TestDateFormat|date:"EEEE MMM d 'at' h:mm a"}}</span>
+              </div>-->
+              <div class="center" style="text-align:center">
+                 <span class="list__item__title">
+                   <span><ons-icon class="list__item__icon" icon="ion-ios-information-outline"></ons-icon></span><!--{{title}}-->
+                   <span ng-show="activeIndex!==historicViewTestResult.length-1"> Result: </span><span ng-show="activeIndex==historicViewTestResult.length-1">Latest Result: </span><span ng-class="chooseColor(historicViewTestResult[activeIndex].AbnormalFlag)" >{{historicViewTestResult[activeIndex].TestValue}}</span><span style="font-size:12px">&nbsp;( {{testInformation.UnitDescription}})</span></span>
+                 <span class="list__item__subtitle">{{historicViewTestResult[activeIndex].TestDateFormat|date:"EEEE MMM d"}}</span>
+              </div>
+              <!--<div class="right"><ons-button ng-disabled="activeIndex==historicViewTestResult.length-1" modifier="quiet" ng-click="nextResult()"><i class="ion-chevron-right" style="font-size:20px"></i></ons-button></div>-->
+
+        </ons-list-item>
+      </ons-list>
+     <!--<line-chart height="250px" data="data"></line-chart>-->
     <!--<div class="chart-wrapper">
     <div class="chart-inner">-->
     <hc-chart  style="width:100%; height: 100%;" options="chartOptions" active-index="activeIndex">Placeholder for generic chart</hc-chart>
@@ -29,17 +63,35 @@
       </ons-list-item>
       <ons-list-item >
         Minimum
-        <span class="right lucent">{{testInformation.MinNorm}} {{testInformation.UnitDescription}}</span>
+        <span class="right lucent">{{testInformation.MinNorm}}&nbsp;  <span style="font-size:10px"> ({{testInformation.UnitDescription}})</span></span>
       </ons-list-item>
       <ons-list-item >
         Maximum
-        <span class="right lucent">{{testInformation.MaxNorm}} {{testInformation.UnitDescription}}</span>
+        <span class="right lucent">{{testInformation.MaxNorm}}&nbsp;  <span style="font-size:10px"> ({{testInformation.UnitDescription}})</span></span>
       </ons-list-item>
       <ons-list-item modifier="chevron" tappable ng-click="goToTestList()">
-        See List of Results
+         List of Results
       </ons-list-item>
        <ons-list-item modifier="chevron">
         About this test
       </ons-list-item>
     </ons-list>
+    <ons-bottom-toolbar>
+      <ons-row vertical-align="center" style="font-weight:500;line-height:45px">
+        <ons-col width="10%">
+          <ons-button  modifier="quiet" ng-click="goPrevTestResult()" ng-disabled="activeTestIndex===0" ><i style="font-size:30px" class="ion-chevron-left"></i></ons-button>
+        </ons-col>
+        <ons-col align="center">
+          <ons-list-header>
+          <div style="text-align:center">
+            <span ng-show="!isFullscreen">{{category}} - {{activeTestIndex+1}}/{{testResultsByType.length}}</span>
+          </div>
+          </ons-list-header>
+        </ons-col>
+        <ons-col width="10%">
+          <ons-button modifier="quiet" ng-disabled="activeTestIndex===testResultsByType.length-1" ng-click="goNextTestResult()" ng-show="!isFullscreen"><i style="font-size:30px" class="ion-chevron-right"></i></ons-button>
+        </ons-col>
+      </ons-row>
+</ons-bottom-toolbar>
+  
 </ons-page>
